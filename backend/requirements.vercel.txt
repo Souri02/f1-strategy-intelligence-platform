@@ -1,6 +1,5 @@
-# Kept in sync with `requirements.txt` (same flat list).
-# Vercel reads `requirements.txt` only — do not use `-r` includes there.
-# Full stack: `requirements.full.txt` (Docker/local).
+# Kept in sync with requirements.txt (same flat list).
+# Full stack for Docker or local: requirements.full.txt
 fastapi
 pydantic
 pydantic-settings

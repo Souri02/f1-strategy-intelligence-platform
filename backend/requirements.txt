@@ -1,5 +1,5 @@
-# Slim install for Vercel (flat list only — no `-r` includes; Vercel’s parser does not support them).
-# Full local/Docker: pip install -r requirements.full.txt
+# Vercel: flat package list (no recursive install lines in comments).
+# Docker or local full stack: use backend/requirements.full.txt
 fastapi
 pydantic
 pydantic-settings

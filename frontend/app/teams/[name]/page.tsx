@@ -38,8 +38,13 @@ export default async function TeamPage({
 }) {
   const season = Number(searchParams?.season ?? "2024");
   const name = decodeURIComponent(params.name);
-  const meta = await getSeasonMeta(season);
-  const team = meta.teams.find((t) => (t.constructor_name ?? "").toLowerCase() === name.toLowerCase());
+  let meta: SeasonMeta | null = null;
+  try {
+    meta = await getSeasonMeta(season);
+  } catch {
+    meta = null;
+  }
+  const team = meta?.teams.find((t) => (t.constructor_name ?? "").toLowerCase() === name.toLowerCase());
   const wiki = team?.wikipedia_title ? await getWiki(team.wikipedia_title) : null;
 
   return (
@@ -47,6 +52,14 @@ export default async function TeamPage({
       <Link href="/" className="backLink">
         ← Back
       </Link>
+      {!meta ? (
+        <div className="card">
+          <p className="error">
+            Team details are unavailable right now because season metadata couldn’t be loaded. Please go back and run{" "}
+            <strong>Prepare season</strong> for {season}, and ensure the backend URL is configured in Vercel.
+          </p>
+        </div>
+      ) : null}
       <div className="detailHero">
         <div className="detailImg">
           {wiki?.thumbnail?.source ? (

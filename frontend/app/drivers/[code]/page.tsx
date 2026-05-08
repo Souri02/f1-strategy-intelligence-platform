@@ -38,8 +38,13 @@ export default async function DriverPage({
 }) {
   const season = Number(searchParams?.season ?? "2024");
   const code = params.code.toUpperCase();
-  const meta = await getSeasonMeta(season);
-  const driver = meta.drivers.find((d) => d.code.toUpperCase() === code);
+  let meta: SeasonMeta | null = null;
+  try {
+    meta = await getSeasonMeta(season);
+  } catch {
+    meta = null;
+  }
+  const driver = meta?.drivers.find((d) => d.code.toUpperCase() === code);
   const wiki = driver?.wikipedia_title ? await getWiki(driver.wikipedia_title) : null;
 
   return (
@@ -47,6 +52,14 @@ export default async function DriverPage({
       <Link href="/" className="backLink">
         ← Back
       </Link>
+      {!meta ? (
+        <div className="card">
+          <p className="error">
+            Driver details are unavailable right now because season metadata couldn’t be loaded. Please go back and run{" "}
+            <strong>Prepare season</strong> for {season}, and ensure the backend URL is configured in Vercel.
+          </p>
+        </div>
+      ) : null}
       <div className="detailHero">
         <div className="detailImg">
           {wiki?.thumbnail?.source ? (

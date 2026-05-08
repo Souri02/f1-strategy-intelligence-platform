@@ -1,5 +1,4 @@
-# Kept in sync with requirements.txt (same flat list).
-# Full stack for Docker or local: requirements.full.txt
+# Mirror of requirements.txt; Vercel installs requirements.txt by default.
 fastapi
 pydantic
 pydantic-settings
@@ -8,6 +7,3 @@ numpy
 requests
 pyarrow
 python-dotenv
-scikit-learn
-xgboost
-joblib

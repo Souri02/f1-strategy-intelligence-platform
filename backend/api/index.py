@@ -1,5 +1,5 @@
-from app.main import app
+from app.main_lite import app
 
-# Vercel Python runtime looks for a module-level variable named `app`
-# which can be an ASGI application (FastAPI is ASGI).
+# Vercel: use lite app (no sklearn/xgboost) to stay under Lambda bundle limits.
+# Full API: Docker image or local uvicorn with app.main:app
 

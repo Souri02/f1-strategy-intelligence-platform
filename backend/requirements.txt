@@ -1,5 +1,5 @@
-# Vercel: flat package list (no recursive install lines in comments).
-# Docker or local full stack: use backend/requirements.full.txt
+# Serverless (Vercel): metadata + Parquet reads only — no sklearn/xgboost (stays under 500 MB).
+# Full backend: requirements.full.txt
 fastapi
 pydantic
 pydantic-settings
@@ -8,6 +8,3 @@ numpy
 requests
 pyarrow
 python-dotenv
-scikit-learn
-xgboost
-joblib

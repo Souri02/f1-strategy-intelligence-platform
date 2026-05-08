@@ -16,4 +16,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.get("/", include_in_schema=True)
+def root() -> dict[str, str]:
+    """Avoid bare 404 when opening the deployment root URL in a browser."""
+    return {
+        "service": settings.project_name,
+        "mode": "full",
+        "message": "API under /api/v1. Open /docs for Swagger.",
+        "health": "/api/v1/health",
+        "docs": "/docs",
+    }
+
+
 app.include_router(router, prefix="/api/v1", tags=["f1"])

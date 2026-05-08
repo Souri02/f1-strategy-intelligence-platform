@@ -1,0 +1,7 @@
+# Reduce upload size; avoid confusing Vercel with the full Docker dependency list.
+requirements.full.txt
+pipelines
+scripts
+run_ingestion.py
+run_build_features.py
+run_train_model.py

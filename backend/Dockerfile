@@ -2,8 +2,8 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY backend/requirements.txt ./requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/requirements.full.txt ./requirements.full.txt
+RUN pip install --no-cache-dir -r requirements.full.txt
 
 COPY backend/app ./app
 COPY backend/run_*.py ./

@@ -52,7 +52,7 @@ flowchart TB
 ## Deployment
 
 - **Docker Compose**: `backend` (Python + Uvicorn), `frontend` (Node dev server); backend may use NVIDIA GPU via `deploy.resources.reservations.devices`.
-- **Host**: Python venv + `pip install -r backend/requirements.txt`; Node + `npm ci` in `frontend/` (use `package-lock.json`).
+- **Host**: Python venv + `pip install -r backend/requirements.full.txt`; Node + `npm ci` in `frontend/` (use `package-lock.json`).
 
 ## Related docs
 

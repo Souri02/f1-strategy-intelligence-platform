@@ -19,7 +19,7 @@ Technical delivery history: **[docs/phase_report.md](docs/phase_report.md)** · 
 
 ## Dependency guarantee (no missing packages)
 
-Everything needed to run the **backend** is listed in **`backend/requirements.txt`**. Everything for the **frontend** is in **`frontend/package.json`** with a lockfile **`frontend/package-lock.json`** (reproducible installs: `npm ci`).
+Everything needed for a **full local/Docker backend** (including FastF1 ingestion) is listed in **`backend/requirements.full.txt`**. For **Vercel’s free serverless backend**, use **`backend/requirements.vercel.txt`** (slim install under the 500 MB bundle limit; no FastF1 — run ingestion via Docker locally). Everything for the **frontend** is in **`frontend/package.json`** with a lockfile **`frontend/package-lock.json`** (reproducible installs: `npm ci`).
 
 After installing, verify Python:
 
@@ -125,7 +125,7 @@ Data persists under **`data/`** on your machine via the volume mount.
    - `cd backend`
    - `python -m venv .venv` then activate (Windows: `.venv\Scripts\activate`; macOS/Linux: `source .venv/bin/activate`).
    - Copy **`backend/.env.example`** → **`backend/.env`** (writes datasets to **`../data/`** at repo root).
-   - `pip install -r requirements.txt`
+   - `pip install -r requirements.full.txt`
    - From **repository root** (venv still active): `python scripts/verify_environment.py`
    - `cd backend` and start API: `uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
 
@@ -157,7 +157,7 @@ cd backend
 python -m venv .venv
 .venv\Scripts\activate
 copy .env.example .env
-pip install -r requirements.txt
+pip install -r requirements.full.txt
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 

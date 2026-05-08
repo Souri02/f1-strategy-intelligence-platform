@@ -16,7 +16,7 @@ I built an **end-to-end Formula 1 strategy analytics platform**: it ingests race
 - **Data**: Season schedules, race results, lap-level race data → Parquet data lake.
 - **ML**: Next-lap-time baseline model (scikit-learn + XGBoost); optional CUDA training in containers.
 - **Product**: REST APIs for ingestion, features, training, strategy simulation, and strategy optimization.
-- **Engineering**: Typed schemas (Pydantic), reproducible `requirements.txt`, optional `package-lock.json` for Node, verification script for imports.
+- **Engineering**: Typed schemas (Pydantic), reproducible `requirements.full.txt`, optional `package-lock.json` for Node, verification script for imports.
 - **Ops**: Docker Compose with GPU passthrough for backend training on consumer NVIDIA GPUs (e.g. RTX 3080).
 
 ---
@@ -97,5 +97,5 @@ Values depend on season, hardware, and network; treat as **order-of-magnitude** 
 
 ## Dependency audit note
 
-- **Python**: `verify_environment.py` + `pip check` — use after every `pip install -r backend/requirements.txt`.
+- **Python**: `verify_environment.py` + `pip check` — use after every `pip install -r backend/requirements.full.txt`.
 - **Node**: `frontend/package-lock.json` locks versions; `npm ci` for clean installs. `npm audit` may report Next.js advisories that **require a major version bump**; plan upgrades in a separate branch after regression testing.

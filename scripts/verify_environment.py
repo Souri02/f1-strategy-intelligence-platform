@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Verify all runtime imports used by the backend resolve after `pip install -r requirements.txt`.
+Verify all runtime imports used by the backend resolve after `pip install -r backend/requirements.full.txt`.
 Run from repo root: python scripts/verify_environment.py
 Or from backend with PYTHONPATH: cd backend && python ../scripts/verify_environment.py
 """
@@ -49,7 +49,7 @@ def main() -> int:
             failed.append((module_name, pip_name, str(exc)))
 
     if failed:
-        print("Missing or broken imports (install with: pip install -r backend/requirements.txt)")
+        print("Missing or broken imports (install with: pip install -r backend/requirements.full.txt)")
         for mod, pip, err in failed:
             print(f"  - {mod} (pip: {pip}): {err}")
         return 1

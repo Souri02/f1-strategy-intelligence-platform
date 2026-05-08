@@ -1,0 +1,16 @@
+# Full backend (Docker / local GPU / ingestion with FastF1).
+# Install: pip install -r backend/requirements.full.txt
+# Verify: python scripts/verify_environment.py (from repo root)
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+pandas
+numpy
+requests
+fastf1
+pyarrow
+python-dotenv
+scikit-learn
+xgboost
+joblib

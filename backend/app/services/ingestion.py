@@ -3,11 +3,22 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-import fastf1
 import pandas as pd
 import requests
 
 from app.services.storage import ensure_data_dirs, write_parquet
+
+
+def _get_fastf1() -> Any:
+    """FastF1 is optional (e.g. slim serverless images). Install for full ingestion."""
+    try:
+        import fastf1
+    except ImportError as exc:
+        raise RuntimeError(
+            "FastF1 is not installed in this runtime. Use Docker or `pip install -r backend/requirements.full.txt` "
+            "locally for lap ingestion and schedule download."
+        ) from exc
+    return fastf1
 
 ERGAST_FALLBACK = "https://ergast.com/api/f1/{season}/results.json?limit=1000"
 JOLPICA_PRIMARY = "https://api.jolpi.ca/ergast/f1/{season}/results.json?limit=1000"
@@ -66,6 +77,7 @@ def _download_season_results(season: int) -> pd.DataFrame:
             continue
     # Fallback (no external quota): build results from FastF1 session results.
     try:
+        fastf1 = _get_fastf1()
         schedule_df = fastf1.get_event_schedule(season, include_testing=False)
         race_events = schedule_df[schedule_df["EventFormat"] != "testing"]
         rows: list[dict[str, Any]] = []
@@ -131,6 +143,7 @@ def _safe_float(value: Any) -> float | None:
 
 
 def ingest_lap_data(season: int) -> pd.DataFrame:
+    fastf1 = _get_fastf1()
     schedule_df = fastf1.get_event_schedule(season, include_testing=False)
     race_events = schedule_df[schedule_df["EventFormat"] != "testing"]
     lap_rows: list[dict[str, Any]] = []
@@ -177,6 +190,7 @@ def ingest_lap_data(season: int) -> pd.DataFrame:
 
 
 def ingest_season_data(data_dir: Path, season: int, include_telemetry: bool = False) -> dict[str, int]:
+    fastf1 = _get_fastf1()
     ensure_data_dirs(data_dir)
 
     cache_dir = data_dir / "raw" / "fastf1_cache"

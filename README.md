@@ -19,7 +19,7 @@ Technical delivery history: **[docs/phase_report.md](docs/phase_report.md)** · 
 
 ## Dependency guarantee (no missing packages)
 
-Everything needed for a **full local/Docker backend** (including FastF1 ingestion) is listed in **`backend/requirements.full.txt`**. For **Vercel’s free serverless backend**, **`backend/requirements.txt`** installs only FastAPI + Parquet helpers (no scikit-learn/xgboost/joblib — they exceed AWS Lambda’s **500 MB** bundle cap). Vercel runs **`app.main_lite`**: **health**, **available seasons**, and **driver/team metadata** work; **ingestion, training, and strategy** return **503** with a pointer to Docker. Kept in sync with **`backend/requirements.vercel.txt`**. Everything for the **frontend** is in **`frontend/package.json`** with a lockfile **`frontend/package-lock.json`** (reproducible installs: `npm ci`).
+Everything needed for a **full local/Docker backend** (including FastF1 ingestion) is listed in **`backend/requirements.full.txt`**. For **Vercel’s free serverless backend**, dependencies are declared in **`backend/pyproject.toml`** (`[project].dependencies`; Vercel uses **`uv lock`**) and mirrored in **`backend/requirements.txt`** / **`backend/requirements.vercel.txt`**. No scikit-learn/xgboost/joblib (they exceed AWS Lambda’s **500 MB** cap). Vercel runs **`app.main_lite`**: **health**, **available seasons**, and **driver/team metadata** work; **ingestion, training, and strategy** return **503** with a pointer to Docker. Everything for the **frontend** is in **`frontend/package.json`** with a lockfile **`frontend/package-lock.json`** (reproducible installs: `npm ci`).
 
 After installing, verify Python:
 

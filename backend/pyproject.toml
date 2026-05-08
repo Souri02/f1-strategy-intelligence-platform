@@ -1,3 +1,19 @@
-# Pin the ASGI entry so Vercel does not auto-pick another file under app/ (e.g. a stray main.py).
+[project]
+name = "f1-strategy-backend"
+version = "0.1.0"
+description = "F1 Strategy API (lite serverless build for Vercel)"
+requires-python = ">=3.12"
+# Must stay aligned with requirements.txt (Vercel runs `uv lock` from this file).
+dependencies = [
+    "fastapi>=0.115.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "pandas>=2.0.0",
+    "numpy>=1.26.0",
+    "requests>=2.31.0",
+    "pyarrow>=14.0.0",
+    "python-dotenv>=1.0.0",
+]
+
 [tool.vercel]
 entrypoint = "app.main_lite:app"

@@ -1,6 +1,6 @@
-# Slim deps for Vercel Python (500 MB Lambda bundle limit).
-# Full stack with FastF1 + telemetry: use backend/requirements.full.txt (Docker/local).
-# Omit uvicorn — Vercel invokes the ASGI app directly.
+# Kept in sync with `requirements.txt` (same flat list).
+# Vercel reads `requirements.txt` only — do not use `-r` includes there.
+# Full stack: `requirements.full.txt` (Docker/local).
 fastapi
 pydantic
 pydantic-settings

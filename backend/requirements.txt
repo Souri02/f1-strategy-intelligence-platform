@@ -1,3 +1,13 @@
-# Vercel installs this file by default — keep it slim (under serverless bundle limits).
-# Full local/Docker stack (FastF1, uvicorn extras): pip install -r requirements.full.txt
--r requirements.vercel.txt
+# Slim install for Vercel (flat list only — no `-r` includes; Vercel’s parser does not support them).
+# Full local/Docker: pip install -r requirements.full.txt
+fastapi
+pydantic
+pydantic-settings
+pandas
+numpy
+requests
+pyarrow
+python-dotenv
+scikit-learn
+xgboost
+joblib

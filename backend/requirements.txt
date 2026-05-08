@@ -1,0 +1,15 @@
+# Install: pip install -r requirements.txt
+# Verify: python ../scripts/verify_environment.py (from repo root) or Docker: python scripts/verify_environment.py
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+pandas
+numpy
+requests
+fastf1
+pyarrow
+python-dotenv
+scikit-learn
+xgboost
+joblib

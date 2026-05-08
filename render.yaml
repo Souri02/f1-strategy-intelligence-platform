@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: f1-strategy-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    autoDeploy: true
+    plan: free
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: F1_DATA_DIR
+        value: /var/data
+    disk:
+      name: f1-data
+      mountPath: /var/data
+      sizeGB: 1

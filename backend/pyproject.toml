@@ -1,0 +1,3 @@
+# Pin the ASGI entry so Vercel does not auto-pick another file under app/ (e.g. a stray main.py).
+[tool.vercel]
+entrypoint = "app.main_lite:app"

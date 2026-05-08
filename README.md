@@ -127,7 +127,7 @@ Data persists under **`data/`** on your machine via the volume mount.
    - Copy **`backend/.env.example`** → **`backend/.env`** (writes datasets to **`../data/`** at repo root).
    - `pip install -r requirements.full.txt`
    - From **repository root** (venv still active): `python scripts/verify_environment.py`
-   - `cd backend` and start API: `uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
+   - `cd backend` and start API: `uvicorn app.full_app:app --reload --host 0.0.0.0 --port 8000`
 
 2. **Data pipeline** (second terminal, venv active, **`cd backend`**):
    ```bash
@@ -158,7 +158,7 @@ python -m venv .venv
 .venv\Scripts\activate
 copy .env.example .env
 pip install -r requirements.full.txt
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn app.full_app:app --reload --host 0.0.0.0 --port 8000
 ```
 
 On macOS/Linux use `cp .env.example .env` instead of `copy`.

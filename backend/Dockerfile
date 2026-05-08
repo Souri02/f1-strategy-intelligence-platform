@@ -12,4 +12,4 @@ COPY scripts ./scripts
 
 ENV PYTHONPATH=/app
 
-CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD uvicorn app.full_app:app --host 0.0.0.0 --port ${PORT:-8000}

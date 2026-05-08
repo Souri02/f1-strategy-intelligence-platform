@@ -56,7 +56,7 @@ def main() -> int:
 
     # App package smoke test
     try:
-        import app.main  # noqa: F401
+        import app.full_app  # noqa: F401
         import app.api.routes  # noqa: F401
         import app.services.strategy_simulation  # noqa: F401
     except Exception as exc:

@@ -1,3 +1,5 @@
+"""Full FastAPI application (Docker / local): all routes including ML and ingestion."""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
